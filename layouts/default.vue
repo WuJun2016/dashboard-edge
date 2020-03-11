@@ -1,20 +1,10 @@
 
 <script>
-/* eslint-disable */
 import { mapState } from 'vuex';
 import { addObject, removeObject } from '@/utils/array';
-import {
-  mapPref, DEV, THEME, EXPANDED_GROUPS, NAV_SHOW
-} from '@/store/prefs';
-// import { allTypes, getTree } from '@/config/nav-cluster';
+import { THEME } from '@/store/prefs';
 import applyTypeConfigs from '@/config/type-config';
-// import ButtonGroup from '@/components/ButtonGroup';
-// import NamespaceFilter from '@/components/nav/NamespaceFilter';
-// import ClusterSwitcher from '@/components/nav/ClusterSwitcher';
-// import WindowManager from '@/components/nav/WindowManager';
-import ShellSocket from '@/components/ContainerExec/ShellSocket';
-// import Group from '@/components/nav/Group';
-// import Footer from '@/components/nav/Footer';
+import Footer from '@/components/nav/Footer';
 import PromptRemove from '@/components/PromptRemove';
 import ActionMenu from '@/components/ActionMenu';
 import { NORMAN, RANCHER } from '@/config/types';
@@ -24,119 +14,34 @@ applyTypeConfigs();
 export default {
 
   components: {
-    // ClusterSwitcher,
     PromptRemove,
-    // Footer,
-    // NamespaceFilter,
+    Footer,
     ActionMenu,
-    // ButtonGroup,
-    // Group,
-    // ShellSocket,
-    // WindowManager
   },
 
   middleware: ['authenticated'],
 
-  // head() {
-  //   const theme = this.$store.getters['prefs/get'](THEME);
+  head() {
+    const theme = this.$store.getters['prefs/get'](THEME);
 
-  //   return {
-  //     bodyAttrs: { class: `theme-${ theme } overflow-hidden dashboard-body` },
-  //     title:     'Dashboard',
-  //   };
-  // },
+    return {
+      bodyAttrs: { class: `theme-${ theme } overflow-hidden dashboard-body` },
+      title:     'Dashboard',
+    };
+  },
 
   data() {
     return { packages: [] };
   },
 
   computed: {
-    // dev:            mapPref(DEV),
-    // expandedGroups: mapPref(EXPANDED_GROUPS),
-    // navShow:        mapPref(NAV_SHOW),
-
-    // multiCluster() {
-    //   return this.$store.getters['management/hasType'](RANCHER.CLUSTER);
-    // },
-
-    // backToRancherLink() {
-    //   if ( !this.multiCluster ) {
-    //     return;
-    //   }
-
-    //   const cluster = this.$store.getters['currentCluster'];
-
-    //   if ( !cluster ) {
-    //     return;
-    //   }
-
-    //   let link = `/c/${ escape(cluster.id) }`;
-
-    //   if ( process.env.dev ) {
-    //     link = `https://localhost:8000${ link }`;
-    //   }
-
-    //   return link;
-    // },
-
-    // navOptions() {
-    //   return this.$store.getters['prefs/options'](NAV_SHOW).map((value) => {
-    //     return {
-    //       label: `nav.show.${ value }`,
-    //       value
-    //     };
-    //   });
-    // },
-
-    // principal() {
-    //   return this.$store.getters['rancher/byId'](NORMAN.PRINCIPAL, this.$store.getters['auth/principalId']) || {};
-    // },
-
-    // groups() {
-    //   const clusterId = this.$store.getters['clusterId'];
-    //   const namespaces = this.$store.getters['namespaces'] || [];
-    //   const types = allTypes(this.$store);
-    //   const mode = this.navShow;
-    //   const currentType = this.$route.params.resource || '';
-
-    //   if ( !types ) {
-    //     return [];
-    //   }
-
-    //   const out = getTree(mode, clusterId, types, namespaces, currentType);
-
-    //   return out;
-    // }
+    
   },
-
-  /*
-  watch: {
-    allTypes() {
-      this.getTree();
-    }
-  },
-*/
 
   methods: {
-    // toggleGroup(route, expanded) {
-    //   const groups = this.expandedGroups.slice();
-
-    //   if ( expanded ) {
-    //     addObject(groups, route);
-    //   } else {
-    //     removeObject(groups, route);
-    //   }
-
-    //   this.$store.commit('prefs/set', { key: EXPANDED_GROUPS, val: groups });
-    // },
-
-    // isExpanded(name) {
-    //   return this.expandedGroups.includes(name);
-    // },
-
-    // toggleNoneLocale() {
-    //   this.$store.dispatch('i18n/toggleNone');
-    // }
+    toggleNoneLocale() {
+      this.$store.dispatch('i18n/toggleNone');
+    }
   }
 };
 </script>
@@ -145,56 +50,52 @@ export default {
   <div class="dashboard-root">
     <div class="cluster">
       <div class="logo" alt="Logo" />
-      <!-- <ClusterSwitcher v-if="multiCluster" /> -->
     </div>
 
-    <div class="top">
-      <!-- <NamespaceFilter /> -->
-    </div>
-
-    <!-- <div v-if="backToRancherLink" class="back">
-      <a v-t="'header.backToRancher'" :href="backToRancherLink" />
-    </div> -->
+    <div class="top"></div>
 
     <div class="user">
-      设置
+      <div>
+        设置
+      </div>
     </div>
 
-    <!-- <nav v-if="clusterReady">
-      <div v-for="g in groups" :key="g.name" class="package">
-        <Group
-          :key="g.name"
-          id-prefix=""
-          :is-expanded="isExpanded"
-          :group="g"
-          :toggle-group="toggleGroup"
-          :custom-header="true"
-          :can-collapse="true"
-        >
-          <template slot="accordion">
-            <h6>{{ g.label }}</h6>
+    <nav>
+      <el-menu
+        default-active="2"
+        class="el-menu-vertical-demo"
+      >
+        <el-submenu index="1">
+          <template slot="title">
+            <span>Device Model</span>
           </template>
-        </Group>
-      </div>
-    </nav> -->
-
-    <!-- <div v-if="clusterReady" class="switcher">
-      <ButtonGroup v-model="navShow" :options="navOptions" :labels-are-translations="true" />
-    </div> -->
+          <el-menu-item-group>
+            <el-menu-item index="1-1">选项1</el-menu-item>
+            <el-menu-item index="1-2">选项2</el-menu-item>
+          </el-menu-item-group>
+        </el-submenu>
+        <el-menu-item index="2">
+          <nuxt-link to="/device/helm.cattle.io.v1.helmchart">
+            <a>
+              <span slot="title">Device</span>
+            </a>
+          </nuxt-link>
+        </el-menu-item>
+        <el-menu-item index="2">
+          <nuxt-link to="/setting">
+            <a><span slot="title">Setting</span></a>
+          </nuxt-link>
+        </el-menu-item>
+      </el-menu>
+    </nav>
 
     <main>
       <nuxt class="outlet" />
-      <!-- <Footer /> -->
+      <Footer />
     </main>
 
-    <div class="wm">
-      <!-- <WindowManager /> -->
-    </div>
-
-    <!-- <ShellSocket /> -->
     <ActionMenu />
     <PromptRemove />
-    <!-- <button v-if="dev" v-shortkey.once="['shift','l']" class="hide" @shortkey="toggleNoneLocale()" /> -->
   </div>
 </template>
 
@@ -204,9 +105,9 @@ export default {
     height: 100vh;
 
     grid-template-areas:
-      "cluster  top   back user"
+      "cluster  top   top user"
       "nav      main  main main"
-      "switcher main  main main"
+      "nav      main  main main"
       "wm       wm    wm   wm";
 
     grid-template-columns: var(--nav-width)     auto 0px                  var(--header-height);
@@ -228,7 +129,6 @@ export default {
         width: 64px;
         position: absolute;
         top: 9px;
-        left: -30px;
         z-index: 2;
       }
     }

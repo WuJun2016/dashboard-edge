@@ -1,5 +1,4 @@
 <script>
-/* eslint-disable */
 import omit from 'lodash/omit';
 import { get } from '@/utils/object';
 

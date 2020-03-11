@@ -30,7 +30,7 @@ export const getters = {
     if ( state.selected === NONE ) {
       return `%${ key }%`;
     } else {
-      return get(state.translations[state.default], key);
+      return get(state.translations[state.selected], key);
     }
   },
 
@@ -43,10 +43,9 @@ export const getters = {
       if ( state.selected === NONE ) {
         out[locale] = `%${ key }%`;
       } else {
-        out[locale] = get(state.translations[state.default], key);
+        out[locale] = get(state.translations[locale], key);
       }
     }
-
     return out;
   },
 

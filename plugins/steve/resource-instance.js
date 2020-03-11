@@ -1,4 +1,3 @@
-/* eslint-disable */
 import { sortableNumericSuffix } from '@/utils/sort';
 import { generateZip, downloadFile } from '@/utils/download';
 import { ucFirst } from '@/utils/string';
@@ -582,11 +581,11 @@ export default {
 
   detailUrl() {
     const router = this.currentRouter();
-    const schema = this.$getters['schemaFor'](this.type);
+    // const schema = this.$getters['schemaFor'](this.type);
     const query = {};
-    
+
     // let route = `c-cluster-resource${ schema.attributes.namespaced ? '-namespace' : '' }-id`;
-    let route = `device-resource-id`;
+    const route = `device-resource-id`;
 
     if (Object.values(WORKLOAD).includes(this.type)) {
       // route = `c-cluster-workloads${ schema.attributes.namespaced ? '-namespace' : '' }-id`;

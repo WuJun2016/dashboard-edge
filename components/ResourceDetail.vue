@@ -1,5 +1,4 @@
 <script>
-/* eslint-disable */
 import { cleanForNew } from '@/plugins/steve/normalize';
 import CreateEditView from '@/mixins/create-edit-view';
 import ResourceYaml from '@/components/ResourceYaml';

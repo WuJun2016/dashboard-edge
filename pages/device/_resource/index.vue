@@ -1,6 +1,5 @@
 <script>
-/* eslint-disable */
-import { HELM, SCHEMA, } from '../../../config/types';
+import { HELM, SCHEMA } from '../../../config/types';
 import ResourceTable from '@/components/ResourceTable';
 import { headersFor } from '@/utils/customized';
 export default {
@@ -37,5 +36,4 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-  
 </style>

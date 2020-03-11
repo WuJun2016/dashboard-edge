@@ -17,7 +17,6 @@ export default {
     type = getters.normalizeType(type);
     const entry = state.types[type];
     if ( entry ) {
-      console.log('entry', entry, entry.map.get(id), id, type);
       return entry.map.get(id);
     }
   },
