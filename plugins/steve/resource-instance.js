@@ -552,7 +552,7 @@ export default {
       }
 
       opt.method = 'delete';
-
+      console.log('remove', opt);
       return this.$dispatch('request', opt);
     };
   },
@@ -688,6 +688,7 @@ export default {
 
   promptRemove() {
     return (resources = this) => {
+      console.log('promptRemove', resources);
       this.$dispatch('promptRemove', resources);
     };
   },

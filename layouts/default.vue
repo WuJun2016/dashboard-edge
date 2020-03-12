@@ -1,18 +1,16 @@
-
 <script>
 import { mapState } from 'vuex';
 import { addObject, removeObject } from '@/utils/array';
 import { THEME } from '@/store/prefs';
 import applyTypeConfigs from '@/config/type-config';
-import Footer from '@/components/nav/Footer';
 import PromptRemove from '@/components/PromptRemove';
+import Footer from '@/components/nav/Footer';
 import ActionMenu from '@/components/ActionMenu';
 import { NORMAN, RANCHER } from '@/config/types';
 
 applyTypeConfigs();
 
 export default {
-
   components: {
     PromptRemove,
     Footer,
@@ -55,9 +53,7 @@ export default {
     <div class="top"></div>
 
     <div class="user">
-      <div>
-        设置
-      </div>
+      设置
     </div>
 
     <nav>
@@ -94,6 +90,10 @@ export default {
       <Footer />
     </main>
 
+    <div class="wm">
+      <!-- <WindowManager /> -->
+    </div>
+
     <ActionMenu />
     <PromptRemove />
   </div>
@@ -105,9 +105,9 @@ export default {
     height: 100vh;
 
     grid-template-areas:
-      "cluster  top   top user"
+      "cluster  top   back user"
       "nav      main  main main"
-      "nav      main  main main"
+      "switcher main  main main"
       "wm       wm    wm   wm";
 
     grid-template-columns: var(--nav-width)     auto 0px                  var(--header-height);
@@ -129,6 +129,7 @@ export default {
         width: 64px;
         position: absolute;
         top: 9px;
+        left: -30px;
         z-index: 2;
       }
     }

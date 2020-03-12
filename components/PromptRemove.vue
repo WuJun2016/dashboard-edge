@@ -105,7 +105,22 @@ export default {
   </modal>
 </template>
 
-<style>
+<style lang="scss">
+    .v--modal {
+      background-color: var(--box-bg);
+      position: absolute;
+    }
+
+    .v--modal-box{
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 60px -2px rgba(0,0,0,0.5);
+      border: 1px solid var(--border);
+
+      &  > :last-child{
+        flex-grow: 1;
+      }
+    }
     #confirm {
         width: 90%;
         margin-left: 3px;
