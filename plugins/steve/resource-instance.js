@@ -596,7 +596,7 @@ export default {
       namespace: this.metadata && this.metadata.namespace,
       id:        this.id
     };
-
+    
     const url = router.resolve({
       name:   route,
       params,

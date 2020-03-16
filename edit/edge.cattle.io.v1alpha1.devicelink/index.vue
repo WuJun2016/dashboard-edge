@@ -13,11 +13,9 @@ export default {
   },
   mixins:     [createEditView],
   data() {
-    let originalQuotaID = null;
     let description;
 
     if (!!this.originalValue) {
-      originalQuotaID = `kube-system/${ this.originalValue.metadata.name }`;
       const originalAnnotations = get(this.originalValue, 'metadata.annotations');
       if (originalAnnotations) {
         description = originalAnnotations[DESCRIPTION];
@@ -43,7 +41,6 @@ export default {
     }
 
     return {
-      originalQuotaID,
       description,
       name: this.value.metadata.name,
     };

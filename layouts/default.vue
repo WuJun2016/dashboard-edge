@@ -63,17 +63,21 @@ export default {
       >
         <el-submenu index="1">
           <template slot="title">
-            <span>Device Model</span>
+            Device Model
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="1-1">选项1</el-menu-item>
-            <el-menu-item index="1-2">选项2</el-menu-item>
-          </el-menu-item-group>
+          <el-menu-item index="2-1">
+            <nuxt-link to="/device-model">
+              <a>
+                <span slot="title">dummy device</span>
+              </a>
+            </nuxt-link>
+          </el-menu-item>
         </el-submenu>
+        
         <el-menu-item index="2">
-          <nuxt-link to="/device/helm.cattle.io.v1.helmchart">
+          <nuxt-link to="/device/edge.cattle.io.v1alpha1.devicelink">
             <a>
-              <span slot="title">Device</span>
+              <span slot="title">Device Link</span>
             </a>
           </nuxt-link>
         </el-menu-item>

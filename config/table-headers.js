@@ -26,6 +26,22 @@ export const NAME_UNLINKED = {
   sort:      ['nameSort'],
 };
 
+export const DEIVCE_MODEL = {
+  name:       'model',
+  label:      'Model',
+  value:      'spec.model.kind',
+  sort:       ['nameSort'],
+  formatter:  'LinkModel',
+  width:       200,
+}
+
+export const DEIVCE_API_VERSION = {
+  name:       'apiVersion',
+  label:      'apiVersion',
+  value:      'spec.model.apiVersion',
+  width:       200,
+}
+
 export const NAMESPACE_NAME_UNLINKED = {
   name:      'namespace-name',
   label:     'Name',
@@ -404,5 +420,4 @@ export const INGRESS_TARGET = {
   value:     "$['spec']['rules'][0]",
   formatter: 'IngressTarget',
   sort:      "$['spec']['rules'][0].host",
-}
-;
+};

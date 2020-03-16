@@ -1,9 +1,6 @@
 <script>
-import { SCHEMA, DEVICE_LINK } from '../../../config/types';
+import { DUMMY_DEVICE, SCHEMA } from '../../config/types';
 import ResourceTable from '@/components/ResourceTable';
-import {
-  STATE, NAME, DEIVCE_MODEL, DEIVCE_API_VERSION, AGE
-} from '@/config/table-headers';
 import { headersFor } from '@/utils/customized';
 export default {
   components: { ResourceTable },
@@ -15,15 +12,15 @@ export default {
 
   computed: {
     schema() {
-      return this.$store.getters['deviceLink/schemaFor'](SCHEMA);
+      return this.$store.getters['dummyDevice/schemaFor'](SCHEMA);
     },
     headers() {
-      return [STATE, NAME, DEIVCE_MODEL, DEIVCE_API_VERSION, AGE];
+      return headersFor(this.schema);
     },
   },
 
-  asyncData(ctx) {
-    return ctx.store.dispatch('deviceLink/findAll', { type: DEVICE_LINK, opt: { url: DEVICE_LINK } }).then((rows) => {
+   asyncData(ctx) {
+    return ctx.store.dispatch('dummyDevice/findAll', { type: DUMMY_DEVICE, opt: { url: DUMMY_DEVICE } }).then((rows) => {
       return {
         rows
       };
@@ -37,3 +34,6 @@ export default {
     <ResourceTable :schema="schema" :rows="rows" :headers="headers" />
   </div>
 </template>
+
+<style lang="scss" scoped>
+</style>

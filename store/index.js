@@ -3,7 +3,8 @@ import Steve from '@/plugins/steve';
 export const strict = false;
 
 export const plugins = [
-  Steve({ namespace: 'helm', baseUrl: '/v1' }),
+  Steve({ namespace: 'deviceLink', baseUrl: '/v1' }),
+  Steve({ namespace: 'dummyDevice', baseUrl: '/v1' }),
 ];
 
 export const state = () => {
@@ -28,8 +29,12 @@ export const actions = {
       // Do nothing, we're already connected to this cluster
       return;
     }
-    dispatch('helm/subscribe');
-    await dispatch('helm/loadSchemas');
+
+    dispatch('deviceLink/subscribe');
+    await dispatch('deviceLink/loadSchemas');
+
+    dispatch('dummyDevice/subscribe');
+    await dispatch('dummyDevice/loadSchemas');
     commit('clusterChanged', true);
   },
 

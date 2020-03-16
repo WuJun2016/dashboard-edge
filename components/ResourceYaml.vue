@@ -79,7 +79,7 @@ export default {
 
   computed: {
     schema() {
-      return this.$store.getters['helm/schemaFor'](this.obj.type);
+      return this.$store.getters['deviceLink/schemaFor'](this.obj.type);
     },
 
     cmOptions() {

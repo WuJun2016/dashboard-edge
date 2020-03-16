@@ -26,7 +26,7 @@ export async function asyncData(ctx) {
   // There are 5 "real" modes: view, create, edit, stage, clone
   // which later map to 3 logical/page modes: view, create, edit (stage and clone are "create")
   const realMode = route.query.mode || _VIEW;
-  const schema = store.getters['helm/schemaFor'](resource);
+  const schema = store.getters['deviceLink/schemaFor'](resource);
 
   let fqid = id;
 
@@ -34,10 +34,10 @@ export async function asyncData(ctx) {
     fqid = `${ namespace }/${ fqid }`;
   }
 
-  const obj = await store.dispatch('helm/find', { type: resource, id: fqid });
+  const obj = await store.dispatch('deviceLink/find', { type: resource, id: fqid });
   console.log(resource, fqid, obj, 'obj');
   const forNew = realMode === _CLONE || realMode === _STAGE;
-  const model = await store.dispatch('helm/clone', { resource: obj });
+  const model = await store.dispatch('deviceLink/clone', { resource: obj });
 
   if ( forNew ) {
     cleanForNew(model);

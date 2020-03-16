@@ -2,7 +2,7 @@
 import ResourceDetail, { watchQuery, asyncData } from '@/components/ResourceDetail';
 
 export default {
-  name:       'HelmResourcedId',
+  name:       'deviceResourcedId',
   components: { ResourceDetail },
   asyncData,
   watchQuery,
